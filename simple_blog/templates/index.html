@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>{{ blogs|length }} Titles</p>
+<ul class="blog-list">
+    {% for blog in blogs %}
+    <li>{{ blog.title }}
+        <span>
+            <p>{{ blog.content|striptags|truncate(20) }}</p>
+        </span>
+    </li>
+    {% endfor %}
+    <p>{{ pagination.total }} 条数据</p>
+</ul>
+<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}" title="to~to~ro~">
+{% endblock %}

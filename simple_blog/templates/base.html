@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css"> -->
+    {% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <!-- <footer>
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
+    </footer> -->
+</body>
+</html>

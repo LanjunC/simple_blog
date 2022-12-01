@@ -13,52 +13,85 @@
     {% endblock %}
 </head>
 
-<body>
+<body style="display: flex; flex-flow: column; min-height: 100vh;">
     {% block navigation %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-            <img src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="36px" height="36px">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+    <div style="flex: 1">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='images/favicon.png') }}" alt="" width="36px" height="36px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search It!" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        {% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+    {% block footer %}
+    <footer class="container-fluid mt-4 py-0 bg-light">
+        <div class="card-body text-center px-0">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-4 text-muted">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-4 text-muted">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-4 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-4 text-muted">About</a></li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <p class="card-text mb-1">Copyright&nbsp;©&nbsp;<span id="year-info">2020</span>
+                <a href="https://github.com/LanjunC" class="text-decoration-none footer-a" target="_blank"
+                    title="作者的github" style="color: inherit">SimpleBlog</a>.&nbsp;Design&nbsp;by&nbsp;Flask1.01.
+            </p>
+            <p class="mb-0">
+                <a href="http://beian.miit.gov.cn/" class="text-decoration-none" style="color: inherit"
+                    target="_blank">xx备8x号</a>&nbsp;<span id="web-day">在线xx天</span>
+            </p>
+            <script>
+                function getNewYear() {
+                    let d = new Date();
+                    let old = new Date('2022/12/01');
+                    let x = document.getElementById("year-info");
+                    x.innerHTML = d.getFullYear();
+                    let y = document.getElementById("web-day");
+                    let dd = Math.floor((d.getTime() - old.getTime()) / (24 * 3600 * 1000));
+                    let d_str = "| 已上线 " + dd + " 天";
+                    y.innerHTML = d_str;
+                }
+
+                getNewYear();
+            </script>
         </div>
-    </nav>
+    </footer>
     {% endblock %}
-    {% block content %}{% endblock %}
-    <!-- <footer>
-        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
-    </footer> -->
 </body>
 
 </html>

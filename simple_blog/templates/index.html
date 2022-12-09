@@ -1,15 +1,89 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>{{ blogs|length }} Titles</p>
-<ul class="blog-list">
-    {% for blog in blogs %}
-    <li>{{ blog.title }}
-        <span>
-            <p>{{ blog.content|striptags|truncate(20) }}</p>
-        </span>
-    </li>
-    {% endfor %}
-    <p>{{ pagination.total }} 条数据</p>
-</ul>
+<main>
+    {# flash #}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                {# author`s info #}
+                <div class="card mb-3 mt-3">
+                    <div class="text-muted card-header ">
+                        <strong>crea</strong>的个人资料
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="img-fluid rounded" alt="OwnerAvatar"
+                                    src="{{ url_for('static', filename='images/favicon.png') }}">
+                            </div>
+                            <div class="col-9">
+                                <h3><strong>Blogin</strong></h3>
+                                <p class="text-muted">Github: <i class="fa fa-link"></i> <a class="text-muted gray-a"
+                                        href="https://github.com/LanjunC" target="_blank">crea`s GitHub</a></p>
+                                <p class="text-muted">建站时间: <i class="fa fa-clock-o"></i> 2022-01-01</p>
+                                <p class="text-muted">联系邮箱: <i class="fa fa-envelope"></i> <a
+                                        class="text-decoration-none text-muted"
+                                        href="mailto:Lanjun1998@163.com">Lanjun1998@163.com</a></p>
+                                <br>
+                                <a href="/" title="xx" class="btn btn-danger float-right"><i
+                                        class="fa fa-heart-o"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# blog list #}
+                <div>
+                    {% for blog in blogs %}
+                    <div class="media mb-1 mb-sm-2 p-2 p-lg-3" style="background-color: #fbfbfb; border-radius: 5px">
+                        <div class="align-self-center mr-2 mr-lg-3 w-25">
+                            <a href="/blog/{{ blog.id }}/">
+                                <img class="w-100 article-img"
+                                    src="{{ url_for('static', filename='images/favicon.png') }}" alt="{{ blog.title }}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <div class="text-muted mb-2">
+                                <span class="badge badge-inverse"><i class="fa fa-user"></i> crea</span>
+                                <span class="badge badge-inverse" title="创建时间"><i
+                                        class="fa fa-calendar-times-o ml-2 mr-1"></i>2021-01-01</span> {# 9天前 #}
+                            </div>
+                            <h5>
+                                <a class="text-muted" style="text-decoration: none; font-size: 18px;" href="/blog/{{ blog.id }}">{{ blog.title }}</a>
+                            </h5>
+                            <p class="d-none d-sm-block mb-2">{{ blog.content|striptags|truncate(100) }}</p>
+                            <p class="d-block d-sm-none mb-2">{{ blog.content|striptags|truncate(50) }}</p>
+                            <div class="text-muted mb-0">
+                                <a style="text-decoration: none;" href="/blog/cate/1/" title="该分类更多blog">
+                                    <span class="text-muted badge badge-inverse"><i class="fa fa-book mr-1"></i>xx分类</span>
+                                </a>
+                                <span class="badge badge-inverse"><i class="fa fa-eye ml-2 mr-1"></i>1</span> {# 阅读次数 #}
+                                <span class="badge badge-inverse"><i class="fa fa-comment-o ml-2 mr-1"></i>2</span> {#
+                                评论个数#}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                {% include "slider.html" %}
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <p>{{ blogs|length }} Titles</p>
+    <ul class="blog-list">
+        {% for blog in blogs %}
+        <li>{{ blog.title }}
+            <span>
+                <p>{{ blog.content|striptags|truncate(20) }}</p>
+            </span>
+        </li>
+        {% endfor %}
+        <p>{{ pagination.total }} 条数据</p>
+    </ul>
+</main>
 {% endblock %}

@@ -22,5 +22,6 @@ class Blog(db.Model):
     id = db.Column(db.INTEGER, primary_key=True, autoincrement=True)
     title = db.Column(db.String(200), nullable=False)
     content = db.Column(db.TEXT, nullable=False)
+    is_top = db.Column(db.INTEGER, nullable=False, default=0, comment='is it set top?')
 
 
